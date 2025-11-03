@@ -1,7 +1,9 @@
+import 'package:esme2526/datas/user_repository_interface.dart';
 import 'package:esme2526/models/user.dart';
 import 'package:esme2526/models/wallet.dart';
 
-class UserRepository {
+class UserRepository implements UserRepositoryInterface{
+  @override
   User getUser() {
     return User(
       id: "1",
@@ -14,5 +16,6 @@ class UserRepository {
       canceledBets: [],
       wishlistedBets: [],
     );
+  
   }
 }
