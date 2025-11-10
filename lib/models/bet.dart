@@ -4,7 +4,7 @@ class Bet {
   final String id;
   final String title;
   final String description;
-  final int odds;
+  final double odds;
   final DateTime startTime;
   final DateTime endTime;
   final DataBet dataBet;

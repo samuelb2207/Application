@@ -1,5 +1,6 @@
 import 'package:esme2526/domain/user_use_case.dart';
 import 'package:esme2526/models/user.dart';
+import 'package:esme2526/screens/home_page/home_page.dart';
 import 'package:esme2526/screens/profile_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,10 @@ class _UserPageState extends State<UserPage> {
     User user = userUseCase.getUser();
 
     return Scaffold(
-      appBar: AppBar(title: Text(user.name)),
+      appBar: AppBar(
+        title: Text(user.name),
+        backgroundColor: Colors.deepPurple,
+      ),
       body: _getBody(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -37,7 +41,10 @@ class _UserPageState extends State<UserPage> {
         },
         items: [
           BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
-          BottomNavigationBarItem(label: 'Bets', icon: Icon(Icons.sports_esports)),
+          BottomNavigationBarItem(
+            label: 'Bets',
+            icon: Icon(Icons.sports_esports),
+          ),
           BottomNavigationBarItem(label: 'Profile', icon: Icon(Icons.person)),
         ],
       ),
@@ -47,7 +54,7 @@ class _UserPageState extends State<UserPage> {
   Widget _getBody(int index) {
     switch (index) {
       case 0:
-        return Center(child: Text('Home'));
+        return HomePage();
       case 1:
         return Center(child: Text('Bets'));
       case 2:
