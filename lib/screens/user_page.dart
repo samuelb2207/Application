@@ -20,10 +20,8 @@ class _UserPageState extends State<UserPage> {
     User user = userUseCase.getUser();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(user.name),
-        backgroundColor: Colors.deepPurple,
-      ),
+      appBar: AppBar(title: Text(user.name), backgroundColor: Colors.white),
+      backgroundColor: Colors.blue,
       body: _getBody(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -41,10 +39,7 @@ class _UserPageState extends State<UserPage> {
         },
         items: [
           BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
-          BottomNavigationBarItem(
-            label: 'Bets',
-            icon: Icon(Icons.sports_esports),
-          ),
+          BottomNavigationBarItem(label: 'Bets', icon: Icon(Icons.sports_esports)),
           BottomNavigationBarItem(label: 'Profile', icon: Icon(Icons.person)),
         ],
       ),

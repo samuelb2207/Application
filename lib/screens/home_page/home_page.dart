@@ -11,18 +11,31 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Bet> bets = [];
-
-  @override
   Widget build(BuildContext context) {
-    BetUseCase betUseCase = BetUseCase();
-    bets.addAll(betUseCase.getBets());
+    return StreamBuilder<List<Bet>>(
+      stream: BetUseCase().getBetsStream(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (snapshot.hasData && snapshot.data != null) {
+          List<Bet> bets = snapshot.data ?? [];
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.9, // Adjust to your layout
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+            ),
+            itemCount: bets.length,
+            itemBuilder: (context, index) {
+              return BetWidget(bet: bets[index]);
+            },
+          );
+        }
 
-    return ListView.builder(
-      itemCount: bets.length,
-      itemBuilder: (context, index) {
-        final bet = bets[index];
-        return BetWidget(bet: bet);
+        return Center(child: Text('No Data'));
       },
     );
   }

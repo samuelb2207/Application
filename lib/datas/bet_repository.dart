@@ -1,11 +1,26 @@
+import 'dart:async';
+
 import 'package:esme2526/datas/bet_repository_interface.dart';
 import 'package:esme2526/models/bet.dart';
 import 'package:esme2526/models/data_bet.dart';
 
 class BetRepository implements BetRepositoryInterface {
+  StreamController<List<Bet>> betsStreamController = StreamController<List<Bet>>();
 
   @override
-  List<Bet> getBets() {
+  Stream<List<Bet>> getBetsStream() async* {
+    List<Bet> bets = await getBets();
+    List<Bet> betsList = [];
+
+    for (int i = 0; i < bets.length; i++) {
+      await Future.delayed(Duration(seconds: 4));
+      betsList.add(bets[i]);
+      yield betsList;
+    }
+  }
+
+  @override
+  Future<List<Bet>> getBets() async {
     return [
       Bet(
         id: "1",
@@ -459,5 +474,4 @@ class BetRepository implements BetRepositoryInterface {
       ),
     ];
   }
-
 }

@@ -4,7 +4,11 @@ import 'package:esme2526/models/bet.dart';
 class BetUseCase {
   final BetRepositoryInterface _repository = BetRepositoryInterface.instance;
 
-  List<Bet> getBets() {
-    return _repository.getBets();
+  Future<List<Bet>> getBets() async {
+    return await _repository.getBets();
+  }
+
+  Stream<List<Bet>> getBetsStream() {
+    return _repository.getBetsStream();
   }
 }
