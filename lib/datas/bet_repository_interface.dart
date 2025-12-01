@@ -7,4 +7,5 @@ abstract class BetRepositoryInterface {
 
   Future<List<Bet>> getBets();
   Stream<List<Bet>> getBetsStream();
+  Future<void> saveBets(List<Bet> bets);
 }

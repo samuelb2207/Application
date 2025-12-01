@@ -8,6 +8,11 @@ class BetRepository implements BetRepositoryInterface {
   StreamController<List<Bet>> betsStreamController = StreamController<List<Bet>>();
 
   @override
+  Future<void> saveBets(List<Bet> bets) async {
+    betsStreamController.add(bets);
+  }
+
+  @override
   Stream<List<Bet>> getBetsStream() async* {
     List<Bet> bets = await getBets();
     List<Bet> betsList = [];
@@ -15,7 +20,7 @@ class BetRepository implements BetRepositoryInterface {
     for (int i = 0; i < bets.length; i++) {
       await Future.delayed(Duration(seconds: 4));
       betsList.add(bets[i]);
-      yield betsList;
+      //   yield betsList;
     }
   }
 

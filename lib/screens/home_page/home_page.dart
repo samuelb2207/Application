@@ -1,3 +1,4 @@
+import 'package:esme2526/datas/bet_repository_hive.dart';
 import 'package:esme2526/domain/bet_use_case.dart';
 import 'package:esme2526/models/bet.dart';
 import 'package:esme2526/screens/home_page/widgets/bet_widget.dart';
@@ -13,7 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<Bet>>(
-      stream: BetUseCase().getBetsStream(),
+      stream: BetRepositoryHive().getBetsStream(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());

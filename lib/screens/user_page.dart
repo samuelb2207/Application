@@ -1,4 +1,9 @@
+import 'dart:math';
+
+import 'package:esme2526/datas/bet_repository_hive.dart';
+import 'package:esme2526/domain/bet_use_case.dart';
 import 'package:esme2526/domain/user_use_case.dart';
+import 'package:esme2526/models/bet.dart';
 import 'package:esme2526/models/user.dart';
 import 'package:esme2526/screens/home_page/home_page.dart';
 import 'package:esme2526/screens/profile_widget.dart';
@@ -21,8 +26,16 @@ class _UserPageState extends State<UserPage> {
 
     return Scaffold(
       appBar: AppBar(title: Text(user.name), backgroundColor: Colors.white),
-      backgroundColor: Colors.blue,
       body: _getBody(_selectedIndex),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          List<Bet> bets = await BetUseCase().getBets();
+          Bet randomBet = bets[Random().nextInt(bets.length)];
+
+          BetRepositoryHive().saveBets([randomBet]);
+        },
+        child: Icon(Icons.add),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.deepPurple,
