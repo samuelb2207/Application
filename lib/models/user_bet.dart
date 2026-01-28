@@ -6,6 +6,7 @@ class UserBet {
   final double odds;
   final double payout;
   final DateTime createdAt;
+  final String choice; // "Oui" or "Non"
 
   UserBet({
     required this.id,
@@ -15,5 +16,6 @@ class UserBet {
     required this.odds,
     required this.payout,
     required this.createdAt,
+    required this.choice,
   });
 }
