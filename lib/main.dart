@@ -318,7 +318,7 @@ class _PolyBetAppV5State extends State<PolyBetAppV5> {
         ),
       ),
       appBar: AppBar(
-        title: const Text("PolyBet Ultimate"),
+        title: const Text("Sam et Lucas Bet"),
         actions: [
           Container(
             margin: const EdgeInsets.only(right: 15),
